@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+  	android:background="#F49AC1">
+    
+    <Button
+        android:id="@+id/title_back"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+ 		android:background="@drawable/ic_menu_back">
+    </Button>
+        
+    <TextView 
+        android:id="@+id/title_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/title"
+        android:textColor="#fff"
+        android:textSize="24sp"/>
+    
+    <Button
+        android:id="@+id/title_setting"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/ic_menu_moreoverflow_normal_holo_light">        
+    </Button>
+
+</LinearLayout>

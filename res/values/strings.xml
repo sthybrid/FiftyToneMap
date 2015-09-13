@@ -1,0 +1,70 @@
+<resources>
+
+    <string name="app_name">FiftyToneMap</string>
+
+    <string name="setting">设置</string>
+
+    <string name="fifty_tone_map">五十音图</string>
+
+    <string name="self_test">自我测试</string>
+
+    <string name="question_description">请点击播放按钮并根据听到的读音选择对应的假名</string>
+
+    <string name="answer_a">选项A</string>
+
+    <string name="answer_b">选项B</string>
+
+    <string name="answer_c">选项C</string>
+
+    <string name="answer_d">选项D</string>
+
+    <string name="confirm">确定</string>
+
+    <string name="next_question">下一题</string>
+
+    <string name="answer_check">答案</string>
+
+    <string name="finish">结束测试</string>
+
+    <string name="error_statistics">错误统计</string>
+
+    <string name="back">返回</string>
+
+    <string name="title">标题</string>
+
+    <string name="name">名称</string>
+
+    <string name="percent">百分比</string>
+
+    <string name="grid_view_item_image">九宫格图片</string>
+
+    <string name="grid_view_item_name">九宫格名称</string>
+
+    <string name="music_start">播放音乐按钮</string>
+
+    <string name="start_logo">开机logo</string>
+
+    <string name="sort_by_id">按五十音排序</string>
+
+    <string name="sort_by_ratio">按错误率排序</string>
+
+    <string name="hiragana_test">平假名测验</string>
+
+    <string name="katakana_test">片假名测试</string>
+
+    <string name="hybrid_test">混合测试</string>
+
+    <string name="time_slow">答题时间20s</string>
+
+    <string name="time_mid">答题时间10s</string>
+
+    <string name="time_fast">答题时间5s</string>
+
+    <string name="clear_statistics">清空数据</string>
+
+    <string name="simple_mode">简单模式</string>
+
+    <string name="explicit_mode">详细模式</string>
+    
+    
+</resources>

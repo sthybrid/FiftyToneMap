@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/test_mode">
+        <item android:id="@+id/menu_setting_hiragana"
+            android:title="@string/hiragana_test"></item>
+        <item android:id="@+id/menu_setting_katakana"
+            android:title="@string/katakana_test"></item>
+        <item android:id="@+id/menu_setting_hybrid"
+            android:title="@string/hybrid_test"></item>
+    </group>
+    
+    <group android:checkableBehavior="single"
+        android:id="@+id/time_mode">
+        <item android:id="@+id/menu_setting_fast"
+            android:title="@string/time_fast"></item>
+        <item android:id="@+id/menu_setting_mid"
+            android:title="@string/time_mid"></item>
+        <item android:id="@+id/menu_setting_slow"
+            android:title="@string/time_slow"></item>
+    </group>
+</menu>
+

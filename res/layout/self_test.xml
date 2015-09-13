@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_layout"/>
+    
+	<ScrollView 
+	    android:layout_weight="1"
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp">
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="0dp"
+	        android:orientation="vertical">
+ 
+	        <TextView
+	        	android:layout_width="match_parent"
+	        	android:layout_height="wrap_content"
+	        	android:textSize="20sp"
+	        	android:text="@string/question_description"/>
+	   		<ImageButton 
+	   		    android:id="@+id/play_meterial"
+	   		    android:layout_width="30dp"
+	   		    android:layout_height="30dp"
+	   		    android:background="@drawable/music_start"
+	   		    android:layout_gravity="left"
+	   		    android:contentDescription="@string/music_start"/>
+	        
+		    <RadioGroup 
+		        android:id="@+id/options"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content">
+		        <RadioButton 
+		            android:id="@+id/answer_a"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/answer_a"/>
+		        <RadioButton 
+		            android:id="@+id/answer_b"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/answer_b"/>
+		        <RadioButton 
+		            android:id="@+id/answer_c"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/answer_c"/>
+		        <RadioButton 
+		            android:id="@+id/answer_d"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:text="@string/answer_d"/>
+		    </RadioGroup>
+		    
+		    <TextView 
+		        android:id="@+id/answer_check"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:textSize="15sp"
+		        android:text="@string/answer_check"
+		        android:textColor="#FF0000"
+		        android:visibility="visible"/>
+   	    
+   	    </LinearLayout>
+	</ScrollView>
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm">
+        </Button>
+       
+        <Button
+        	android:id="@+id/next_question"
+            android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:text="@string/next_question"
+        	android:visibility="invisible">
+    	</Button>
+    	
+        <Button 
+	        android:id="@+id/finish"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/finish"/>
+    </LinearLayout>
+
+</LinearLayout>
