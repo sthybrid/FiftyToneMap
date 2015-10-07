@@ -11,6 +11,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * 
+ * @author ºúÑó
+ * @date 2015/9/1
+ *
+ */
+
 public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 
 	//Path to the device folder with database
@@ -28,8 +35,8 @@ public class MyDatabaseOpenHelper extends SQLiteOpenHelper {
 	public MyDatabaseOpenHelper(Context context, String databaseName) {
 	    super(context, databaseName, null, 1);
 	    this.context = context;
-	        DB_NAME = databaseName;
-            DB_PATH =context.getDatabasePath(DB_NAME).getPath() ;
+        DB_NAME = databaseName;
+        DB_PATH = context.getDatabasePath(DB_NAME).getPath();
 	    openDataBase();
 
 	}

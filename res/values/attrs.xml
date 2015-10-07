@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="menu_background_color" format="color" />
+	<attr name="menu_text_color" format="color" />
+	<attr name="menu_back" format="reference" />
+	<attr name="menu_theme" format="reference" />
+	<attr name="menu_setting" format="reference" />
+	<attr name="background_color" format="color" />
+	<attr name="text_color" format="color" />
+	<attr name="fifty_tone_map_item_background" format="reference" />
+	<attr name="fifty_tone_map_item_background_pressed" format="reference" />
+	<attr name="write_area_background" format="reference" />
+	<attr name="map_explicit_up_down_background" format="reference" />
+	<attr name="map_explicit_left_right_background" format="reference" />
+</resources>
+

@@ -3,14 +3,14 @@
 
     <item android:id="@android:id/background">
         <shape>
-            <solid android:color="#0000" />
+            <solid android:color="#00000000" />
         </shape>
     </item>
     <!-- 第二条进度条颜色 -->
     <item android:id="@android:id/secondaryProgress">
         <clip>
             <shape> 
-				<solid android:color="#FFF" />
+				<solid android:color="#FFFFFFFF" />
             </shape>
         </clip>
     </item>
@@ -18,7 +18,7 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape> 
-                <solid android:color="#F00" />
+                <solid android:color="#FFFF0000" />
             </shape>
         </clip>
     </item>

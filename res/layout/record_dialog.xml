@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="20dp" 
+    android:background="@drawable/record_bg"    
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/record_dialog_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:contentDescription="@string/record_dialog_img"/>
+
+    <TextView
+        android:id="@+id/record_dialog_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="5dp" />
+
+</LinearLayout>

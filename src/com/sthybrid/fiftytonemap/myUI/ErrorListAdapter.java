@@ -2,6 +2,7 @@ package com.sthybrid.fiftytonemap.myUI;
 
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,14 @@ import android.widget.TextView;
 
 import com.sthybrid.fiftytonemap.R;
 
-public class ErrorListAdapter extends BaseAdapter{
+/**
+ * 
+ * @author ºúÑó
+ * @date 2015/9/1
+ *
+ */
+
+@SuppressLint("InflateParams") public class ErrorListAdapter extends BaseAdapter{
 
 	private List<ErrorListItem> list;
 	Context context;

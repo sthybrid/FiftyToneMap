@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/background_color">
+        
+   	<FrameLayout 
+   	    android:id="@+id/character_view"
+   	    android:layout_width="242dp"
+   	    android:layout_height="220dp"
+   	    android:background="?attr/write_area_background"
+   	    android:layout_centerInParent="true">
+	   	
+	   	<ImageView 
+	   	    android:id="@+id/character"
+	   	    android:scaleType="fitXY"
+	   	    android:layout_width="match_parent"
+	   	    android:layout_height="match_parent"
+	   	    android:src="@drawable/a_k"
+	   	    android:contentDescription="@string/character"/>
+	   	
+	   	<com.sthybrid.fiftytonemap.myUI.PracticeImageView
+	   	    android:id="@+id/write_view"
+	   	    android:layout_width="match_parent"
+	   	    android:layout_height="match_parent"
+	   	    android:visibility="invisible"/>   	
+   	    
+   	</FrameLayout>
+   	
+	<Button 
+	    android:id="@+id/up_char"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_above="@id/character_view"
+	    android:gravity="center"
+	    android:layout_centerHorizontal="true"
+	    android:layout_margin="0dp"
+	    android:text="@string/up"
+	    android:textSize="20sp"
+	    android:textColor="?attr/text_color"
+	    android:background="?attr/map_explicit_up_down_background"/>
+	<Button 
+	    android:id="@+id/down_char"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/character_view"
+	    android:gravity="center"
+	    android:layout_centerHorizontal="true"
+	    android:layout_margin="0dp"
+	    android:text="@string/down"
+	    android:textSize="20sp"
+	    android:textColor="?attr/text_color"
+	    android:background="?attr/map_explicit_up_down_background"/>
+	<Button 
+		android:id="@+id/left_char"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toLeftOf="@id/character_view"
+		android:gravity="center"
+		android:layout_centerVertical="true"
+		android:layout_margin="0dp"
+		android:text="@string/left"
+		android:textSize="20sp"
+		android:textColor="?attr/text_color"
+		android:background="?attr/map_explicit_left_right_background"/>
+	<Button 
+		android:id="@+id/right_char"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/character_view"
+		android:gravity="center"
+		android:layout_centerVertical="true"
+		android:layout_margin="0dp"
+		android:text="@string/right"
+		android:textSize="20sp"
+		android:textColor="?attr/text_color"
+		android:background="?attr/map_explicit_left_right_background"/>
+
+   	<LinearLayout 
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content"
+   	    android:id="@+id/map_explicit_bottombar"
+   	    android:layout_alignParentBottom="true"
+   	    style="?android:attr/buttonBarStyle">
+
+		<Button 
+   	        android:id="@+id/pronounce"
+   	        android:layout_width="0dp"
+   	        android:layout_weight="1"
+   	        android:layout_height="wrap_content"
+   	        android:text="@string/pronounce"
+   	        android:textColor="?attr/text_color"
+   	        style="?android:attr/buttonBarButtonStyle"/>
+   	    	    
+   	    <com.sthybrid.fiftytonemap.myUI.RecordButton
+   	        android:id="@+id/record"
+   	        android:layout_width="0dp"
+   	        android:layout_weight="1"
+   	        android:layout_height="wrap_content"
+   	        android:textColor="?attr/text_color"
+   	        style="?android:attr/buttonBarButtonStyle"/>
+   	    
+   	    <Button 
+   	        android:id="@+id/record_compare"
+   	        android:layout_width="0dp"
+   	        android:layout_weight="1"
+   	        android:layout_height="wrap_content"
+   	        android:text="@string/record_compare"
+   	        android:textColor="?attr/text_color"
+   	        style="?android:attr/buttonBarButtonStyle"/>
+   	    
+   	</LinearLayout>
+   	
+   	<LinearLayout 
+   	    android:layout_width="match_parent"
+   	    android:layout_height="wrap_content"
+   	    android:layout_above="@id/map_explicit_bottombar"
+   	    style="?android:attr/buttonBarStyle">
+   	    
+ 	    <Button 
+   	        android:id="@+id/hiragana_katakana"
+   	        android:layout_width="0dp"
+   	        android:layout_weight="1"
+   	        android:layout_height="wrap_content"
+   	        android:text="@string/katakana"
+   	        android:textColor="?attr/text_color"
+   	        style="?android:attr/buttonBarButtonStyle"/>
+   	    
+   	    <Button 
+   	        android:id="@+id/write_practice"
+   	        android:layout_width="0dp"
+   	        android:layout_weight="1"
+   	        android:layout_height="wrap_content"
+   	        android:text="@string/write_practice"
+   	        android:textColor="?attr/text_color"
+   	        style="?android:attr/buttonBarButtonStyle"/>
+
+		<Button
+   	        android:id="@+id/eraser"
+   	        android:layout_width="0dp"
+   	        android:layout_weight="1"
+   	        android:layout_height="wrap_content"
+   	        android:text="@string/eraser"
+   	        android:textColor="?attr/text_color"
+   	        style="?android:attr/buttonBarButtonStyle"/>	    
+   	</LinearLayout>
+   	
+</RelativeLayout>

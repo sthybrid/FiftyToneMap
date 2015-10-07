@@ -10,6 +10,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * 
+ * @author 胡洋
+ * @date 2015/9/1
+ *
+ */
+
 public class FiftyToneMapDB {
 	/**
 	 * 数据库名称
@@ -36,9 +43,26 @@ public class FiftyToneMapDB {
 		return fiftyToneMapDB;
 	}
 	
+	public List<Tone> loadUnvoicedSound(){
+		List<Tone> list = loadTone();
+		
+		//因为五十音图中ya行和wa行有空，所以将对应的元音插入制定位置
+		Tone tone = list.get(1);	//元音i
+		list.add(36, tone);			//插入ya的后面
+		list.add(45,tone);			//插入wa的后面
+		
+		tone = list.get(2);	//元音u
+		list.add(46, tone);	//插入wa行第三列
+		
+		tone = list.get(3);	//元音e
+		list.add(38, tone);	//插入yu的后面
+		list.add(48, tone);	//插入wa行第四列
+		return list;
+	
+	}	
 	public List<Tone> loadTone(){
 		List<Tone> list = new ArrayList<Tone>();
-		Cursor cursor = db.query(TAB1_NAME, null, null, null, null, null, null);
+		Cursor cursor = db.query(TAB1_NAME, null, null, null, null, null, "id");
 		if(cursor.moveToFirst()){
 			do{
 				Tone tone = new Tone();
@@ -57,7 +81,7 @@ public class FiftyToneMapDB {
 	//for error statistics
 	public List<Tone> loadTone(int lowBound){
 		List<Tone> list = new ArrayList<Tone>();
-		Cursor cursor = db.query(TAB1_NAME, null, "totalNum > ?", new String []{String.valueOf(lowBound)}, null, null, null);
+		Cursor cursor = db.query(TAB1_NAME, null, "totalNum > ?", new String []{String.valueOf(lowBound)}, null, null, "id");
 		if(cursor.moveToFirst()){
 			do{
 				Tone tone = new Tone();

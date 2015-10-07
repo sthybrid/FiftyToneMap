@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DayTheme" parent="AppTheme">
+        <item name="menu_background_color">@color/pink</item>
+		<item name="menu_text_color">@color/white</item>
+		<item name="menu_back" format="reference">@drawable/ic_menu_back_day_theme</item>
+		<item name="menu_theme" format="reference">@drawable/ic_menu_night_mode_day_theme</item>
+		<item name="menu_setting" format="reference">@drawable/ic_menu_moreoverflow_day_theme</item>
+		<item name="background_color" format="color">@color/white</item>
+		<item name="text_color" format="color">@color/black</item>
+		<item name="fifty_tone_map_item_background">@drawable/frame_pink</item>
+		<item name="fifty_tone_map_item_background_pressed">@drawable/frame_pressed_pink</item>
+    	<item name="write_area_background">@drawable/write_area_bg</item>
+   		<item name="map_explicit_up_down_background">@drawable/up_down_btn_bg</item>
+		<item name="map_explicit_left_right_background">@drawable/left_right_btn_bg</item>
+    	
+    </style>
+    
+    <style name="NightTheme" parent="AppTheme">
+        <item name="menu_background_color">@color/black</item>
+		<item name="menu_text_color">@color/grey</item>
+		<item name="menu_back" format="reference">@drawable/ic_menu_back_night_theme</item>
+		<item name="menu_theme" format="reference">@drawable/ic_menu_night_mode_night_theme</item>
+		<item name="menu_setting" format="reference">@drawable/ic_menu_moreoverflow_night_theme</item>
+		<item name="background_color" format="color">@color/black</item>
+		<item name="text_color" format="color">@color/grey</item>
+		<item name="fifty_tone_map_item_background">@drawable/frame_grey</item>	
+		<item name="fifty_tone_map_item_background_pressed">@drawable/frame_pressed_grey</item>
+		<item name="write_area_background">@drawable/write_area_bg</item>
+   		<item name="map_explicit_up_down_background">@drawable/up_down_btn_bg</item>
+		<item name="map_explicit_left_right_background">@drawable/left_right_btn_bg</item>
+			
+    </style>
+    
+</resources>

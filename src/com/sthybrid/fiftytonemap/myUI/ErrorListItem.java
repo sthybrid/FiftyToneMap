@@ -1,5 +1,12 @@
 package com.sthybrid.fiftytonemap.myUI;
 
+/**
+ * 
+ * @author ºúÑó
+ * @date 2015/9/13
+ *
+ */
+
 public class ErrorListItem {
 
 	private String name;

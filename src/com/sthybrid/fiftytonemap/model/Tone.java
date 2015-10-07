@@ -1,5 +1,12 @@
 package com.sthybrid.fiftytonemap.model;
 
+/**
+ * 
+ * @author ºúÑó
+ * @date 2015/9/1
+ *
+ */
+
 public class Tone {
 	private int id;
 	private String name;

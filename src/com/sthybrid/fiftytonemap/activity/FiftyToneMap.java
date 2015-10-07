@@ -1,231 +1,136 @@
-//TODO 音量调节的问题
-
 package com.sthybrid.fiftytonemap.activity;
 
+import java.util.List;
+
 import com.sthybrid.fiftytonemap.R;
-import com.sthybrid.fiftytonemap.util.MusicPlayUtil;
+import com.sthybrid.fiftytonemap.db.FiftyToneMapDB;
+import com.sthybrid.fiftytonemap.model.Tone;
+import com.sthybrid.fiftytonemap.util.MediaUtil;
 import com.sthybrid.fiftytonemap.util.SettingUtil;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 
-public class FiftyToneMap extends Activity implements OnClickListener, OnItemClickListener{
+/**
+ * 
+ * @author 胡洋
+ * @date 2015/9/1
+ *
+ */
+
+public class FiftyToneMap extends MyActivity implements OnItemClickListener{
 		
-	private Button titleBack;
-	private Button titleSetting;
-	private TextView titleText;
 	private GridView gridView;
-	private PopupMenu popupMenu;
 	//默认选项
 	private int checkedItemId;
-	private MusicPlayUtil musicPlayUtil = null;
+	
+	private List<Tone> list;
+	
+	private View lastSelectedView = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.fifty_tone_map);
 		findViews();
 		setViews();
-		setListeners();
+		setTitle();
 	}
+
 
 	private void findViews(){
 		gridView = (GridView)findViewById(R.id.grid_view_map);
-		titleBack = (Button)findViewById(R.id.title_back);
-		titleSetting = (Button)findViewById(R.id.title_setting);
-		titleText = (TextView)findViewById(R.id.title_text);
 	}
 	
 	private void setViews(){
-		titleText.setText("五十音图");
+		list = FiftyToneMapDB.getInstance(this).loadUnvoicedSound();	
 		gridView.setAdapter(new MyAdapter(this));
 		gridView.setOnItemClickListener(this);
 	}
 
+	private void setTitle() {
+		title.setTitle(R.string.fifty_tone_map);
+		title.setTitleSettingVisibility(View.VISIBLE);
+		title.popupMenu.getMenuInflater().inflate(R.menu.menu_fifty_tone_map, title.popupMenu.getMenu());
+		switch(SettingUtil.getMapViewMode()){
+		case SettingUtil.MAP_VIEW_MODE_SIMPLE:
+			checkedItemId = R.id.menu_setting_simple;
+			break;
+		case SettingUtil.MAP_VIEW_MODE_EXPLICIT:
+			checkedItemId = R.id.menu_setting_explicit;			
+		}
+		title.popupMenu.getMenu().findItem(checkedItemId).setChecked(true);
+		title.popupMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+			
+			@Override
+			public boolean onMenuItemClick(MenuItem item) {
+				item.setChecked(true);
+				switch (item.getItemId()) {
+				case R.id.menu_setting_simple:
+					SettingUtil.setMapViewMode(SettingUtil.MAP_VIEW_MODE_SIMPLE);
+					break;
+				case R.id.menu_setting_explicit:
+					SettingUtil.setMapViewMode(SettingUtil.MAP_VIEW_MODE_EXPLICIT);
+					break;
+				default:
+					break;
+				}
+				return false;
+			}
+		});
+	}
+	
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		musicPlayUtil = new MusicPlayUtil(this);
-		switch(position){
-		case 0:
-			musicPlayUtil.playMusic("a.mp3");
+
+        TypedValue typedValue =  new TypedValue();
+		
+        int resourceId;
+        
+        if (null != lastSelectedView ) {
+        	getTheme().resolveAttribute(R.attr.fifty_tone_map_item_background, typedValue, true);
+        	resourceId = typedValue.resourceId;			
+        	lastSelectedView.setBackgroundResource(resourceId);
+        }
+        lastSelectedView = view;
+
+        getTheme().resolveAttribute(R.attr.fifty_tone_map_item_background_pressed, typedValue, true);
+		resourceId = typedValue.resourceId;
+		view.setBackgroundResource(resourceId);
+		
+		switch(SettingUtil.getMapViewMode()){
+		case SettingUtil.MAP_VIEW_MODE_SIMPLE:
+			MediaUtil.playMusic(this,list.get(position).getName() + ".mp3");
 			break;
-		case 1:
-		case 36:
-		case 46:
-			musicPlayUtil.playMusic("i.mp3");
-			break;
-		case 2:
-		case 47:
-			musicPlayUtil.playMusic("u.mp3");
-			break;
-		case 3:
-		case 38:
-		case 48:
-			musicPlayUtil.playMusic("e.mp3");
-			break;
-		case 4:
-		case 49:
-			musicPlayUtil.playMusic("o.mp3");
-			break;
-		case 5:
-			musicPlayUtil.playMusic("ka.mp3");
-			break;
-		case 6:
-			musicPlayUtil.playMusic("ki.mp3");
-			break;
-		case 7:
-			musicPlayUtil.playMusic("ku.mp3");
-			break;
-		case 8:
-			musicPlayUtil.playMusic("ke.mp3");
-			break;
-		case 9:
-			musicPlayUtil.playMusic("ko.mp3");
-			break;
-		case 10:
-			musicPlayUtil.playMusic("sa.mp3");
-			break;
-		case 11:
-			musicPlayUtil.playMusic("shi.mp3");
-			break;
-		case 12:
-			musicPlayUtil.playMusic("su.mp3");
-			break;
-		case 13:
-			musicPlayUtil.playMusic("se.mp3");
-			break;
-		case 14:
-			musicPlayUtil.playMusic("so.mp3");
-			break;
-		case 15:
-			musicPlayUtil.playMusic("ta.mp3");
-			break;
-		case 16:
-			musicPlayUtil.playMusic("chi.mp3");
-			break;
-		case 17:
-			musicPlayUtil.playMusic("tsu.mp3");
-			break;
-		case 18:
-			musicPlayUtil.playMusic("te.mp3");
-			break;
-		case 19:
-			musicPlayUtil.playMusic("to.mp3");
-			break;
-		case 20:
-			musicPlayUtil.playMusic("na.mp3");
-			break;
-		case 21:
-			musicPlayUtil.playMusic("ni.mp3");
-			break;
-		case 22:
-			musicPlayUtil.playMusic("nu.mp3");
-			break;
-		case 23:
-			musicPlayUtil.playMusic("ne.mp3");
-			break;
-		case 24:
-			musicPlayUtil.playMusic("no.mp3");
-			break;
-		case 25:
-			musicPlayUtil.playMusic("ha.mp3");
-			break;
-		case 26:
-			musicPlayUtil.playMusic("hi.mp3");
-			break;
-		case 27:
-			musicPlayUtil.playMusic("fu.mp3");
-			break;
-		case 28:
-			musicPlayUtil.playMusic("he.mp3");
-			break;
-		case 29:
-			musicPlayUtil.playMusic("ho.mp3");
-			break;
-		case 30:
-			musicPlayUtil.playMusic("ma.mp3");
-			break;
-		case 31:
-			musicPlayUtil.playMusic("mi.mp3");
-			break;
-		case 32:
-			musicPlayUtil.playMusic("mu.mp3");
-			break;
-		case 33:
-			musicPlayUtil.playMusic("me.mp3");
-			break;
-		case 34:
-			musicPlayUtil.playMusic("mo.mp3");
-			break;
-		case 35:
-			musicPlayUtil.playMusic("ya.mp3");
-			break;
-		case 37:
-			musicPlayUtil.playMusic("yu.mp3");
-			break;
-		case 39:
-			musicPlayUtil.playMusic("yo.mp3");
-			break;
-		case 40:
-			musicPlayUtil.playMusic("ra.mp3");
-			break;
-		case 41:
-			musicPlayUtil.playMusic("ri.mp3");
-			break;
-		case 42:
-			musicPlayUtil.playMusic("ru.mp3");
-			break;
-		case 43:
-			musicPlayUtil.playMusic("re.mp3");
-			break;
-		case 44:
-			musicPlayUtil.playMusic("ro.mp3");
-			break;
-		case 45:
-			musicPlayUtil.playMusic("wa.mp3");
-			break;
-		case 50:
-			musicPlayUtil.playMusic("n.mp3");
+		case SettingUtil.MAP_VIEW_MODE_EXPLICIT:
+			Intent intent = new Intent(this, MapExplicit.class);
+			intent.putExtra("position", position);
+			startActivity(intent);			
 			break;
 		default:
+			Log.d("FiftyToneMap", "Map view mode error");
 			break;
-		}
-		
+		}		
 	};
 	
 	class MyAdapter extends BaseAdapter{
 		
 		private Context context;
-		
-		private Integer[] images = {R.drawable.a, R.drawable.i, R.drawable.u, R.drawable.e, R.drawable.o,
-				R.drawable.ka, R.drawable.ki, R.drawable.ku, R.drawable.ke, R.drawable.ko,
-				R.drawable.sa, R.drawable.shi, R.drawable.su, R.drawable.se, R.drawable.so,
-				R.drawable.ta, R.drawable.chi, R.drawable.tsu, R.drawable.te, R.drawable.to,
-				R.drawable.na, R.drawable.ni, R.drawable.nu, R.drawable.ne, R.drawable.no,
-				R.drawable.ha, R.drawable.hi, R.drawable.fu, R.drawable.he, R.drawable.ho,
-				R.drawable.ma, R.drawable.mi, R.drawable.mu, R.drawable.me, R.drawable.mo,
-				R.drawable.ya, R.drawable.i, R.drawable.yu, R.drawable.e, R.drawable.yo,
-				R.drawable.ra, R.drawable.ri, R.drawable.ru, R.drawable.re, R.drawable.ro,
-				R.drawable.wa, R.drawable.i, R.drawable.u, R.drawable.e, R.drawable.wo,
-				R.drawable.n
-				};
 		
 		public MyAdapter(Context context) {
 			this.context = context;
@@ -233,12 +138,12 @@ public class FiftyToneMap extends Activity implements OnClickListener, OnItemCli
 
 		@Override
 		public int getCount() {
-			return images.length;
+			return (null == list) ? 0 : list.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			return images[position];
+			return (null == list) ? null : list.get(position);
 		}
 
 		@Override
@@ -246,69 +151,36 @@ public class FiftyToneMap extends Activity implements OnClickListener, OnItemCli
 			return position;
 		}
 
-		@Override
+		@SuppressLint("InflateParams") @Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			ImageView imageView = null;
+			ViewHolder viewHolder;
+			Tone tone = (Tone) getItem(position);
+			View view = null;
 			if( null == convertView ){
-				imageView = new ImageView(context);
+				view = LayoutInflater.from(context).inflate(R.layout.fifty_tone_map_item, null);
+				viewHolder = new ViewHolder();
+				viewHolder.hiragana = (TextView)view.findViewById(R.id.hiragana);
+				viewHolder.katakana = (TextView)view.findViewById(R.id.katakana);
+				viewHolder.englishName = (TextView)view.findViewById(R.id.english_name);
+				view.setTag(viewHolder);
 			} else {
-				imageView = (ImageView) convertView;
+				view = convertView;
+				viewHolder = (ViewHolder) view.getTag();
 			}
-			imageView.setImageResource(images[position]);
-			imageView.setAdjustViewBounds(true);
-			return imageView;
+			viewHolder.hiragana.setText(tone.getHiragana());
+			viewHolder.katakana.setText(tone.getKatakana());
+			if(tone.getName().equals("wo")){
+				viewHolder.englishName.setText("o");				
+			}else{
+				viewHolder.englishName.setText(tone.getName());
+			}
+			return view;
 		}
-	}
 
-	private void setListeners() {
-		titleBack.setOnClickListener(this);
-		titleSetting.setOnClickListener(this);
-	}
-	
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.title_back:
-			finish();
-			SettingUtil.saveSettings();
-			break;
-		case R.id.title_setting:
-			popupMenu = new PopupMenu(this, titleSetting);
-			popupMenu.getMenuInflater().inflate(R.menu.menu_fifty_tone_map, popupMenu.getMenu());
-			if(SettingUtil.MAP_VIEW_MODE_SIMPLE == SettingUtil.mapViewMode){
-				checkedItemId = R.id.menu_setting_simple;
-			}else if(SettingUtil.MAP_VIEW_MODE_EXPLICIT == SettingUtil.mapViewMode){
-				checkedItemId = R.id.menu_setting_explicit;
-			}
-			popupMenu.getMenu().findItem(checkedItemId).setChecked(true);
-			popupMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
-				
-				@Override
-				public boolean onMenuItemClick(MenuItem item) {
-					switch (item.getItemId()) {
-					case R.id.menu_setting_simple:
-						SettingUtil.mapViewMode = SettingUtil.MAP_VIEW_MODE_SIMPLE;
-						//TODO
-						break;
-					case R.id.menu_setting_explicit:
-						SettingUtil.mapViewMode = SettingUtil.MAP_VIEW_MODE_EXPLICIT;
-						//TODO
-						break;
-					default:
-						break;
-					}
-					return false;
-				}
-			});
-			popupMenu.show();
-			break;
-		default:
-			break;
+		class ViewHolder{
+			TextView hiragana;
+			TextView katakana;
+			TextView englishName;
 		}
-	}
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		SettingUtil.saveSettings();
 	}
 }
